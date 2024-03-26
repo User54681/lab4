@@ -20,10 +20,10 @@ int main()
     func<float>();
     std::cout << "\n";*/
 
-    matrix<float> mat1(2, 3);
+    /*matrix<float> mat1(3, 3);
     mat1.random();
 
-    matrix<float> mat2(2, 3);
+    matrix<float> mat2(3, 3);
     mat2.random();
 
     std::cout << "Матрица 1:" << "\n" << mat1;
@@ -59,47 +59,62 @@ int main()
     }
     else {
         std::cout << "Матрица 1 равняется матрице 2." << "\n";
-    }
+    }*/
+
+    //// Пример использования шаблонного класса Vector
+    //Vector<int> vector1({ 1, 2, 3 });
+    //Vector<int> vector2({ 4, 5, 6 });
+
+    //std::cout << "Vector 1: " << vector1 << "\n";
+    //std::cout << "Vector 2: " << vector2 << "\n";
+
+    //// Пример вычисления скалярного произведения
+    //int dotProductResult = vector1.dotProduct(vector2);
+    //std::cout << "Dot product of vectors: " << dotProductResult << "\n";
+
+    //// Пример вычисления векторного произведения
+    //Vector<int> crossProductResult = vector1.crossProduct(vector2);
+    //std::cout << "Cross product of vectors: " << crossProductResult << "\n";
 }
-//
-//template <typename T>
-//T Second_Max(const T* arr, int size) {
-//    if (size < 2) {
-//        std::cout << "Размер массива должен быть не менее двух" << "\n";
-//        return T();
-//    }
-//
-//    int max = 0, second_max = 0;
-//    std::vector <T> vec(arr, arr + size);
-//
-//    for (int i = 0; i < size; ++i) {
-//        if (vec[i] > vec[max]) {
-//            max = i;
-//        }
-//    }
-//
-//    vec.erase(vec.begin() + max);
-//
-//    for (int i = 0; i < vec.size(); ++i) {
-//        if (vec[i] > vec[second_max]) {
-//            second_max = i;
-//        }
-//    }
-//
-//    return (second_max != -1) ? vec[second_max] : T();
-//}
-//
-//template <typename T>
-//void func() {
-//    srand(time(0));
-//    int size = 0;
-//    std::cout << "Введите размер массива: " << "\n";
-//    std::cin >> size;
-//    std::vector <T> array(size);
-//    for (int i = 0; i < size; ++i) array[i] = static_cast<T>(rand()%100);
-//    for (int i = 0; i < size; ++i) std::cout << array[i] << "\t";
-//    std::cout << "\n";
-//
-//    T second_max = Second_Max(&array[0], size);
-//    std::cout << "Второй максимум данного массива: " << second_max << "\n";
-//}
+
+template <typename T>
+T Second_Max(const T* arr, int size) {
+    if (size < 2) {
+        std::cout << "Размер массива должен быть не менее двух" << "\n";
+        return T();
+    }
+
+    int max = 0, second_max = 0;
+    std::vector <T> vec(arr, arr + size);
+
+    for (int i = 0; i < size; ++i) {
+        if (vec[i] > vec[max]) {
+            max = i;
+        }
+    }
+
+    vec.erase(vec.begin() + max);
+
+    for (int i = 0; i < vec.size(); ++i) {
+        if (vec[i] > vec[second_max]) {
+            second_max = i;
+        }
+    }
+
+    return (second_max != -1) ? vec[second_max] : T();
+}
+
+template <typename T>
+void func() {
+    srand(time(0));
+    int size = 0;
+    std::cout << "Введите размер массива: " << "\n";
+    std::cin >> size;
+    std::vector <T> array(size);
+    for (int i = 0; i < size; ++i) array[i] = static_cast<T>(rand()%100);
+    for (int i = 0; i < size; ++i) std::cout << array[i] << "\t";
+    std::cout << "\n";
+
+    T second_max = Second_Max(&array[0], size);
+    std::cout << "Второй максимум данного массива: " << second_max << "\n";
+}
