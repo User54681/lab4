@@ -135,3 +135,52 @@ template <typename T>
 bool matrix<T>::operator !=(const matrix<T>& other) const {
     return !(*this == other);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+template <typename T>
+void Vector<T>::random() {
+    for (size_t i = 0; i < data.size(); ++i) {
+        data[i] = static_cast<T>(rand() % 10);
+    }
+}
+
+template <typename T>
+T Vector<T>::dotProduct(const Vector<T>& other) {
+    if (data.size() != other.data.size()) {
+        std::cout << "Cannot calculate dot product of vectors with different sizes" << "\n";
+        return static_cast<T>(0);
+    }
+
+    T result = static_cast<T>(0);
+    for (size_t i = 0; i < data.size(); ++i) {
+        result += data[i] * other.data[i];
+    }
+
+    return result;
+}
+
+template <typename T>
+Vector<T> Vector<T>::crossProduct(const Vector<T>& other) {
+    if (data.size() != 3 || other.data.size() != 3) {
+        std::cout << "Cross product is only defined for 3-dimensional vectors" << "\n";
+        return Vector<T>();
+    }
+
+    Vector<T> result;
+    result.data = {
+        data[1] * other.data[2] - data[2] * other.data[1],
+        data[2] * other.data[0] - data[0] * other.data[2],
+        data[0] * other.data[1] - data[1] * other.data[0]
+    };
+
+    return result;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const Vector<T>& vec) {
+    for (const T& elem : vec.data) {
+        os << elem << " ";
+    }
+    return os;
+}

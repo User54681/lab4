@@ -22,5 +22,17 @@ public:
 	bool operator !=(const matrix<T>& other) const;
 };
 
-#endif // !source
+template <typename T>
+class Vector {
+private:
+    std::vector<T> data;
+public:
+    Vector() {}
+    Vector(const std::vector<T>& vec) : data(vec) {}
+    void random();
+    T dotProduct(const Vector<T>& other);
+    Vector<T> crossProduct(const Vector<T>& other);
+    friend std::ostream& operator<<(std::ostream& os, const Vector<T>& vec);
+};
 
+#endif // !source
