@@ -122,21 +122,23 @@ public:
     };
 };
 
-template <typename t>
-class vector {
+template <typename T>
+class Vec {
 private:
-    std::vector<t> data;
+    std::vector <T> data;
 public:
-    vector() {}
-    vector(const std::vector<t>& vec) : data(vec) {}
+    vector() {
+        
+    }
+    vector(const std::vector<T>& vec) : data(vec) {}
     void random() {
         for (size_t i = 0; i < data.size(); ++i) {
             data[i] = static_cast<T>(rand() % 10);
         }
     };
-    t dotproduct(const vector<t>& other) {
+    T Dot_Product(const vector<T>& other) {
         if (data.size() != other.data.size()) {
-            std::cout << "Cannot calculate dot product of vectors with different sizes" << "\n";
+            std::cout << "Ќевозможно посчитать скал€рное произведение векторов" << "\n";
             return static_cast<T>(0);
         }
 
@@ -147,9 +149,9 @@ public:
 
         return result;
     };
-    vector<t> crossproduct(const vector<t>& other) {
+    vector<T> Cross_Product(const vector<T>& other) {
         if (data.size() != 3 || other.data.size() != 3) {
-            std::cout << "Cross product is only defined for 3-dimensional vectors" << "\n";
+            std::cout << "¬екторное произведние возможно только тогда, когда вектора образуют правую тройку" << "\n";
             return Vector<T>();
         }
 
@@ -162,7 +164,7 @@ public:
 
         return result;
     };
-    friend std::ostream& operator<<(std::ostream& os, const vector<t>& vec) {
+    friend std::ostream& operator<<(std::ostream& os, const vector<T>& vec) {
         for (const T& elem : vec.data) {
             os << elem << " ";
         }
